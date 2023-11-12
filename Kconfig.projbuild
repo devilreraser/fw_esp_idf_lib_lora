@@ -1,11 +1,10 @@
 menu "Component lora Configuration"
 
-    config USE_LORA
+    config LIB_USE_LORA
         bool "Use LoRa Module"
-        default y if ESP_BOARD_ALFA00
-        default n
+        default y
 
-    if USE_LORA
+    if LIB_USE_LORA
  
         config LORA_GPIO_RANGE_MIN
             int "GPIO Minimum"

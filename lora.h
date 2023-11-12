@@ -14,8 +14,6 @@ extern "C"
 
 
 
-#include <sdkconfig.h>
-#if CONFIG_USE_LORA
 #include <stdint.h>
 
 /*
@@ -87,9 +85,6 @@ int lora_initialized(void);
 void lora_dump_registers(void);
 void lora_write_reg(int reg, int val);
 int lora_read_reg(int reg);
-
-#endif  /* #if CONFIG_USE_LORA */
-
 
 #ifdef __cplusplus
 }

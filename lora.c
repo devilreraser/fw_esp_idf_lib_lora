@@ -1,7 +1,5 @@
 #include <sdkconfig.h>
 
-#if CONFIG_USE_LORA
-
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_system.h"
@@ -569,5 +567,3 @@ lora_dump_registers(void)
    }
    printf("\n");
 }
-
-#endif   /* #if CONFIG_USE_LORA */
