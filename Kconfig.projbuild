@@ -1,0 +1,74 @@
+menu "Component lora Configuration"
+
+    config USE_LORA
+        bool "Use LoRa Module"
+        default y if ESP_BOARD_ALFA00
+        default n
+
+    if USE_LORA
+ 
+        config LORA_GPIO_RANGE_MIN
+            int "GPIO Minimum"
+            default 0
+
+        config LORA_GPIO_RANGE_NONE
+            int "GPIO Not Used"
+            default -1
+
+        config LORA_GPIO_OUT_RANGE_MAX
+            int "GPIO Maximum"
+            default 33 if IDF_TARGET_ESP32
+            default 46 if IDF_TARGET_ESP32S2
+            default 19 if IDF_TARGET_ESP32C3
+            default 48 if IDF_TARGET_ESP32S3
+            default -1
+
+        config LORA_GPIO_IN_RANGE_MAX
+            int "GPIO Maximum"
+            default 39 if IDF_TARGET_ESP32
+            default 46 if IDF_TARGET_ESP32S2
+            default 19 if IDF_TARGET_ESP32C3
+            default 48 if IDF_TARGET_ESP32S3
+            default -1
+
+        config LORA_CS_GPIO
+            int "CS GPIO"
+            range LORA_GPIO_RANGE_NONE LORA_GPIO_OUT_RANGE_MAX
+            default 15 if IDF_TARGET_ESP32
+            default -1
+            help
+                Pin Number where the NCS pin of the LoRa module is connected to.
+
+        config LORA_RST_GPIO
+            int "RST GPIO"
+            range LORA_GPIO_RANGE_NONE LORA_GPIO_OUT_RANGE_MAX
+            default 26 if IDF_TARGET_ESP32
+            default -1
+            help
+                Pin Number where the NRST pin of the LoRa module is connected to.
+
+        config LORA_MISO_GPIO
+            int "MISO GPIO"
+            range LORA_GPIO_RANGE_NONE LORA_GPIO_IN_RANGE_MAX
+            default 13 if IDF_TARGET_ESP32
+            default -1
+            help
+                Pin Number to be used as the MISO SPI signal.
+
+        config LORA_MOSI_GPIO
+            int "MOSI GPIO"
+            range LORA_GPIO_RANGE_NONE LORA_GPIO_OUT_RANGE_MAX
+            default 0 if IDF_TARGET_ESP32
+            default -1
+            help
+                Pin Number to be used as the MOSI SPI signal.
+
+        config LORA_SCK_GPIO
+            int "SCK GPIO"
+            range LORA_GPIO_RANGE_NONE LORA_GPIO_OUT_RANGE_MAX
+            default 12 if IDF_TARGET_ESP32
+            default -1
+            help
+                Pin Number to be used as the SCK SPI signal.
+    endif
+endmenu
